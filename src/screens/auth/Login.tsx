@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SocialLogin from './Components/SocialLogin';
-import handleAPI from '../../apis/handleApi';
+import handleAPI from '../../apis/handleAPI';
 import { addAuth } from '../../reduxs/reducers/AuthReducer';
 import { appInfo, localDataNames } from '../../constants/appInfos';
 

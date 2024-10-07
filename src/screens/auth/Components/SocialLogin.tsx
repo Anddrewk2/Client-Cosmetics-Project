@@ -4,7 +4,7 @@ import { Button, message } from 'antd';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import handleAPI from '../../../apis/handleApi';
+import handleAPI from '../../../apis/handleAPI';
 import { auth } from '../../../firebase/firebaseConfig';
 import { addAuth } from '../../../reduxs/reducers/AuthReducer';
 import { localDataNames } from '../../../constants/appInfos';

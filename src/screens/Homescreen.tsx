@@ -6,7 +6,7 @@ import { colors } from '../constants/Colors';
 import { StatisticModel } from '../models/StatictisModel';
 import { LiaCoinsSolid } from 'react-icons/lia';
 
-const HomeScreen = () => {
+const Homescreen = () => {
 	const salesData: StatisticModel[] = [
 		{
 			key: `sales`,
@@ -84,4 +84,4 @@ const HomeScreen = () => {
 	);
 };
 
-export default HomeScreen;
+export default Homescreen;
