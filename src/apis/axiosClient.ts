@@ -5,11 +5,11 @@ import axios from 'axios';
 import queryString from 'query-string';
 import { localDataNames } from '../constants/appInfos';
 
-const baseURL = `http://192.168.1.100:3001`;
+const baseURL = `http://192.168.100.132:3001`;
 
 const getAssetToken = () => {
 	const res = localStorage.getItem(localDataNames.authData);
-	
+
 	if (res) {
 		const auth = JSON.parse(res);
 		return auth && auth.token ? auth.token : '';
@@ -32,7 +32,7 @@ axiosClient.interceptors.request.use(async (config: any) => {
 		Accept: 'application/json',
 		...config.headers,
 	};
-		//config header  voi viec them accesstoken va header author neu no ton tai . Dam ban dinh dang jsson
+
 	return { ...config, data: config.data ?? null };
 });
 

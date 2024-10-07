@@ -2,7 +2,7 @@
 
 import { Button, Card, Form, Input, message, Space, Typography } from 'antd';
 import { useState } from 'react';
-import handleAPI from '../../apis/handleApi';
+import handleAPI from '../../apis/handleAPI';
 import SocialLogin from './Components/SocialLogin';
 import { localDataNames } from '../../constants/appInfos';
 import { addAuth } from '../../reduxs/reducers/AuthReducer';
