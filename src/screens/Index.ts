@@ -2,20 +2,23 @@
 
 import Login from './auth/Login';
 import SignUp from './auth/Signup';
-import Inventories from './inventories/Inventories';
-import ProductDetail from './inventories/ProductDetail';
 import ManageStore from './ManageStore';
 import Orders from './Orders';
 import ReportScreen from './ReportScreen';
 import Suppliers from './Suppliers';
-
+import CategoryDetail from './categories/CategoryDetail';
+import Categories from './categories/Categories';
+import AddProduct from './Inventories/AddProduct';
+import Inventories from './Inventories/showAllproduct';
 export {
 	Login,
 	SignUp,
 	ManageStore,
+	AddProduct,
 	Orders,
-	Inventories,
 	ReportScreen,
 	Suppliers,
-	ProductDetail,
+	Categories,
+	CategoryDetail,
+	Inventories
 };
