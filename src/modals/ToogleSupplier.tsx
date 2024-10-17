@@ -32,9 +32,9 @@ const ToogleSupplier = (props: Props) => {
 	const [form] = Form.useForm();
 	const inpRef = useRef<any>();
 
-	useEffect(() => {
-		getFormData();
-	}, []);
+	// useEffect(() => {
+	// 	getFormData();
+	// }, []);
 
 	useEffect(() => {
 		if (supplier) {
@@ -77,18 +77,18 @@ const ToogleSupplier = (props: Props) => {
 		}
 	};
 
-	const getFormData = async () => {
-		const api = `/supplier/get-form`;
-		setIsGetting(true);
-		try {
-			const res = await handleAPI(api);
-			res.data && setFormData(res.data);
-		} catch (error) {
-			console.log(error);
-		} finally {
-			setIsGetting(false);
-		}
-	};
+	// const getFormData = async () => {
+	// 	const api = `/supplier/get-form`;
+	// 	setIsGetting(true);
+	// 	try {
+	// 		const res = await handleAPI(api);
+	// 		res.data && setFormData(res.data);
+	// 	} catch (error) {
+	// 		console.log(error);
+	// 	} finally {
+	// 		setIsGetting(false);
+	// 	}
+	// };
 	const handleClose = () => {
 		form.resetFields();
 		setFile(undefined);
