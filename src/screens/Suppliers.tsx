@@ -143,14 +143,14 @@ const Suppliers = () => {
 			render: (item: SupplierModel) => (
 				<Space>
 					
-					<Tooltip title='Edit supplier' key={'btnEdit'}>
+					{/* <Tooltip title='Edit supplier' key={'btnEdit'}>
 						<Button
 							icon={<Edit2 color={colors.primary500} size={20} />}
 							type='text'
-							onClick={()=>SetIsvisibleModalAddNew(true)}
+							onClick={()=>SetIsvisibleModalAddNew('`/supplier/add-new?id=${item._id}')}
 							// onClick={() => navigate(`/supplier/add-new?id=${item._id}`)}
 						/>
-					</Tooltip>
+					</Tooltip> */}
 					<Tooltip title='Delete product' key={'btnDelete'}>
 						<Button
 							icon={<Trash className='text-danger' size={20} />}
