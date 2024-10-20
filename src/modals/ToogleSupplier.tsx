@@ -106,6 +106,7 @@ const ToogleSupplier = (props: Props) => {
 			okButtonProps={{
 				loading: isLoading,
 			}}
+			
 			title={supplier ? 'Update' : 'Add Supplier'}
 			okText={supplier ? 'Update' : `Add Supplier`}
 			cancelText='Discard'>
