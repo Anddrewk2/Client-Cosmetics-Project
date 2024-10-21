@@ -1,13 +1,13 @@
 /** @format */
 
 import { Affix, Layout } from 'antd';
-import HomeScreen from '../screens/Homescreen';
+import Homescreen from '../screens/Homescreen';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-import { AddCategory, HeaderComponent, SiderComponent } from '../components';
+import {
+	ShowallProduct,ManageStore,Orders,GetProductDetails,ReportScreen,Suppliers,AddProduct} from '../screens/Index';
+import { HeaderComponent, SiderComponent } from '../components';
 import Categories from '../screens/categories/Categories';
 import CategoryDetail from '../screens/categories/CategoryDetail';
-import {  ManageStore, Orders,  ReportScreen, Suppliers , AddProduct ,Inventories } from '../screens/Index';
 const { Content, Footer, Header, Sider } = Layout;
 
 const MainRouter = () => {
@@ -26,13 +26,13 @@ const MainRouter = () => {
 					</Affix>
 					<Content className='pt-3 container-fluid'>
 						<Routes>
-							<Route path='/' element={<HomeScreen />} />
+							<Route path='/' element={<Homescreen />} />
 							<Route>
-								<Route path='/inventory' element={<Inventories />} />
-								<Route path='/inventory/add-product' element={<AddProduct/>} />
+								<Route path='/inventory' element={<ShowallProduct />} />
+								<Route path='/inventory/add-product' element={<AddProduct />} />
 								<Route
 									path='/inventory/detail/:slug'
-									
+									element={<GetProductDetails />}
 								/>
 							</Route>
 							<Route path='/report' element={<ReportScreen />} />

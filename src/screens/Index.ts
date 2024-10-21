@@ -9,7 +9,8 @@ import Suppliers from './Suppliers';
 import CategoryDetail from './categories/CategoryDetail';
 import Categories from './categories/Categories';
 import AddProduct from './Inventories/AddProduct';
-import Inventories from './Inventories/showAllproduct';
+import ShowallProduct from './Inventories/showAllproduct';
+import GetProductDetails from './Inventories/GetProductDetails';
 export {
 	Login,
 	SignUp,
@@ -20,5 +21,6 @@ export {
 	Suppliers,
 	Categories,
 	CategoryDetail,
-	Inventories
+	GetProductDetails,
+	ShowallProduct
 };

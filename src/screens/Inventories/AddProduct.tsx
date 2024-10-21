@@ -1,4 +1,3 @@
-
 /** @format */
 
 import { Editor } from '@tinymce/tinymce-react';
@@ -27,11 +26,13 @@ import { Add } from 'iconsax-react';
 import { ModalCategory } from '../../modals';
 import { getTreeValues } from '../../utils/getTreeValues';
 import { useSearchParams } from 'react-router-dom';
+import { GetProductDetails } from '../Index';
 const { Text, Title, Paragraph } = Typography;
 
 const AddProduct = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [content, setcontent] = useState('');
+	const [supplierOptions, setSupplierOptions] = useState<SelectModel[]>([]);
 	const [isVisibleAddCategory, setIsVisibleAddCategory] = useState(false);
 	const [categories, setCategories] = useState<TreeModel[]>([]);
 	const [isCreating, setIsCreating] = useState(false);
@@ -58,6 +59,7 @@ const AddProduct = () => {
 	const getData = async () => {
 		setIsLoading(true);
 		try {
+			await getSuppliers();
 			await getCategories();
 		} catch (error: any) {
 			message.error(error.message);
@@ -118,7 +120,7 @@ const AddProduct = () => {
 
 			data.images = urls;
 		}
-
+		console.log(data)
 		try {
 			await handleAPI(
 				`/products/${id ? `update?id=${id}` : 'add-new'}`,
@@ -143,6 +145,7 @@ const AddProduct = () => {
 			label: item.name,
 		}));
 
+		setSupplierOptions(options);
 	};
 
 	const getCategories = async () => {
@@ -283,7 +286,26 @@ const AddProduct = () => {
 									/>
 								</Form.Item>
 							</Card>
-						
+							<Card size='small' className='mt-3' title='Suppliers'>
+								<Form.Item
+									name={'supplier'}
+									rules={[
+										{
+											required: true,
+											message: 'Required',
+										},
+									]}>
+									<Select
+										showSearch
+										filterOption={(input, option) =>
+											replaceName(option?.label ? option.label : '').includes(
+												replaceName(input)
+											)
+										}
+										options={supplierOptions}
+									/>
+								</Form.Item>
+							</Card>
 							<Card size='small' className='mt-3' title='Images'>
 								<Upload
 									multiple

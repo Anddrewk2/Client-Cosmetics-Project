@@ -411,8 +411,7 @@ const Inventories = () => {
 				pagination={{
 					showSizeChanger: true,
 					onShowSizeChange: (current, size) => {
-						// console.log(current, size);
-						// console.log('size');
+		
 					},
 					total,
 					onChange(page, pageSize) {

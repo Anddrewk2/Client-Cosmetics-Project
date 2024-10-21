@@ -4,11 +4,10 @@ import { Button, message } from 'antd';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import handleAPI from '../../../apis/handleAPI';
 import { auth } from '../../../firebase/firebaseConfig';
 import { addAuth } from '../../../reduxs/reducers/AuthReducer';
 import { localDataNames } from '../../../constants/appInfos';
-
+import handleAPI from '../../../apis/handleAPI';
 const provider = new GoogleAuthProvider();
 provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 

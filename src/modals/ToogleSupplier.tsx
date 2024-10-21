@@ -1,6 +1,6 @@
 /** @format */
 
-import { Avatar, Button, Form, message, Modal, Typography,Input, Select } from 'antd';
+import { Avatar, Button, Form, message, Modal, Typography , Checkbox } from 'antd';
 import { User } from 'iconsax-react';
 import { useEffect, useRef, useState } from 'react';
 import handleAPI from '../apis/handleAPI';
@@ -21,7 +21,7 @@ interface Props {
 }
 
 const ToogleSupplier = (props: Props) => {
-	const { visible, onAddNew, onClose, supplier } = props;
+	const { visible, onAddNew, onClose, supplier   } = props;
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [isGetting, setIsGetting] = useState(false);
@@ -32,9 +32,9 @@ const ToogleSupplier = (props: Props) => {
 	const [form] = Form.useForm();
 	const inpRef = useRef<any>();
 
-	// useEffect(() => {
-	// 	getFormData();
-	// }, []);
+	useEffect(() => {
+		getFormData();
+	}, []);
 
 	useEffect(() => {
 		if (supplier) {
@@ -50,22 +50,23 @@ const ToogleSupplier = (props: Props) => {
 		const api = `/supplier/${
 			supplier ? `update?id=${supplier._id}` : 'add-new'
 		}`;
-
+	
+		console.log(data)
 		for (const i in values) {
 			data[i] = values[i] ?? '';
 		}
 
 		data.price = values.price ? parseInt(values.price) : 0;
 		data.isTaking = isTaking ? 1 : 0;
-        
+
 		if (file) {
 			data.photoUrl = await uploadFile(file);
 		}
-
+        
 		data.slug = replaceName(values.name);
 
+
 		try {
-            console.log(values)
 			const res: any = await handleAPI(api, data, supplier ? 'put' : 'post');
 			message.success(res.message);
 			!supplier && onAddNew(res.data);
@@ -77,18 +78,18 @@ const ToogleSupplier = (props: Props) => {
 		}
 	};
 
-	// const getFormData = async () => {
-	// 	const api = `/supplier/get-form`;
-	// 	setIsGetting(true);
-	// 	try {
-	// 		const res = await handleAPI(api);
-	// 		res.data && setFormData(res.data);
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	} finally {
-	// 		setIsGetting(false);
-	// 	}
-	// };
+	const getFormData = async () => {
+		const api = `/supplier/get-form`;
+		setIsGetting(true);
+		try {
+			const res = await handleAPI(api);
+			res.data && setFormData(res.data);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsGetting(false);
+		}
+	};
 	const handleClose = () => {
 		form.resetFields();
 		setFile(undefined);
@@ -106,11 +107,10 @@ const ToogleSupplier = (props: Props) => {
 			okButtonProps={{
 				loading: isLoading,
 			}}
-			
 			title={supplier ? 'Update' : 'Add Supplier'}
 			okText={supplier ? 'Update' : `Add Supplier`}
 			cancelText='Discard'>
-			<label htmlFor='inpFile' className='p-2 mb-3 row '>
+			<label htmlFor='inpFile' className='p-2 mb-3 row'>
 				{file ? (
 					<Avatar size={100} src={URL.createObjectURL(file)} />
 				) : supplier ? (
@@ -134,49 +134,6 @@ const ToogleSupplier = (props: Props) => {
 					</Button>
 				</div>
 			</label>
-            <Form 
-            disabled={isLoading}
-             onFinish={addNewSupplier}
-             layout='horizontal'
-             labelCol={{span:8}}
-             wrapperCol={{span:16}}
-             size='large'
-              form={form}>
-                <Form.Item name={'name'} rules={[{
-                    required:true,
-                    message:'Entersupplier name'
-                }]}
-
-                 label='Supplier name'>
-                        <Input placeholder='Entersupplier name' allowClear></Input>
-                </Form.Item>
-                <Form.Item name={'product'} label='Product'>
-                        <Input placeholder='Entersupplier name' allowClear></Input>
-                </Form.Item>
-                <Form.Item name={'categories'} label='Category'>
-                    <Select options={[]} placeholder='Entersupplier name'/>
-                </Form.Item>
-                <Form.Item name={'price'} label='Buying Price'>
-                        <Input placeholder='Entersupplier name' type='number' allowClear></Input>
-                </Form.Item>
-                <Form.Item name={'contact'} label='Contact Number'>
-                        <Input placeholder='Entersupplier name' allowClear></Input>
-                </Form.Item>
-                <Form.Item label='Type'>
-                    <div className='mb-2'>
-                    <Button 
-                     size='middle'
-                     onClick={() => setIsTaking(false)} type={isTaking ===false ? 'primary':'default'}>Not Talking Return</Button>
-                    </div>
-                    
-                    <Button
-                    size='middle'
-                    onClick={() => setIsTaking(true)}
-                     type={isTaking ? 'primary':'default'}>Talking Return</Button>
-                    
-                </Form.Item>
-            </Form>
-
 			{formData && (
 				<Form
 					disabled={isLoading}
@@ -188,6 +145,7 @@ const ToogleSupplier = (props: Props) => {
 					form={form}>
 					{formData.formItems.map((item) => (
 						<FormItem item={item} />
+						
 					))}
 				</Form>
 			)}
@@ -202,7 +160,6 @@ const ToogleSupplier = (props: Props) => {
 					onChange={(val: any) => setFile(val.target.files[0])}
 				/>
 			</div>
-
 		</Modal>
 	);
 };
