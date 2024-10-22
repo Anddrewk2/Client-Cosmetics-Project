@@ -189,9 +189,10 @@ const ProductDetail = () => {
 						setProductSelected(undefined);
 						setIsVisibleAddSubProduct(false);
 					}}
+					subProduct={subProductSelected}
 					onAddNew={async (val) => {
 						await getProductDetail();
-					 setSubProducts([...subProducts, val]);
+						// setSubProducts([...subProducts, val]);
 					}}
 				/>
 			)}

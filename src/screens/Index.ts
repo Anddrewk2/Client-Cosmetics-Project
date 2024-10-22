@@ -8,19 +8,18 @@ import ReportScreen from './ReportScreen';
 import Suppliers from './Suppliers';
 import CategoryDetail from './categories/CategoryDetail';
 import Categories from './categories/Categories';
-import AddProduct from './Inventories/AddProduct';
-import ShowallProduct from './Inventories/showAllproduct';
-import GetProductDetails from './Inventories/GetProductDetails';
+import Inventories from './Inventories/Inventories';
+import ProductDetail from './Inventories/ProductDetail';
+
 export {
 	Login,
 	SignUp,
 	ManageStore,
-	AddProduct,
 	Orders,
 	ReportScreen,
 	Suppliers,
 	Categories,
 	CategoryDetail,
-	GetProductDetails,
-	ShowallProduct
+	Inventories,
+	ProductDetail
 };

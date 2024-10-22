@@ -1,6 +1,6 @@
 /** @format */
 
-import { Avatar, Button, Form, message, Modal, Typography , Checkbox } from 'antd';
+import { Avatar, Button, Checkbox, Form, message, Modal, Typography } from 'antd';
 import { User } from 'iconsax-react';
 import { useEffect, useRef, useState } from 'react';
 import handleAPI from '../apis/handleAPI';
@@ -21,7 +21,7 @@ interface Props {
 }
 
 const ToogleSupplier = (props: Props) => {
-	const { visible, onAddNew, onClose, supplier   } = props;
+	const { visible, onAddNew, onClose, supplier } = props;
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [isGetting, setIsGetting] = useState(false);
@@ -44,38 +44,37 @@ const ToogleSupplier = (props: Props) => {
 	}, [supplier]);
 
 	const addNewSupplier = async (values: any) => {
-		setIsLoading(true);
+		console.log(values)
+		// setIsLoading(true);
 
-		const data: any = {};
-		const api = `/supplier/${
-			supplier ? `update?id=${supplier._id}` : 'add-new'
-		}`;
-	
-		console.log(data)
-		for (const i in values) {
-			data[i] = values[i] ?? '';
-		}
+		// const data: any = {};
+		// const api = `/supplier/${
+		// 	supplier ? `update?id=${supplier._id}` : 'add-new'
+		// }`;
 
-		data.price = values.price ? parseInt(values.price) : 0;
-		data.isTaking = isTaking ? 1 : 0;
+		// for (const i in values) {
+		// 	data[i] = values[i] ?? '';
+		// }
 
-		if (file) {
-			data.photoUrl = await uploadFile(file);
-		}
-        
-		data.slug = replaceName(values.name);
+		// data.price = values.price ? parseInt(values.price) : 0;
+		// data.isTaking = isTaking ? 1 : 0;
 
+		// if (file) {
+		// 	data.photoUrl = await uploadFile(file);
+		// }
 
-		try {
-			const res: any = await handleAPI(api, data, supplier ? 'put' : 'post');
-			message.success(res.message);
-			!supplier && onAddNew(res.data);
-			handleClose();
-		} catch (error) {
-			console.log(error);
-		} finally {
-			setIsLoading(false);
-		}
+		// data.slug = replaceName(values.name);
+
+		// try {
+		// 	const res: any = await handleAPI(api, data, supplier ? 'put' : 'post');
+		// 	message.success(res.message);
+		// 	!supplier && onAddNew(res.data);
+		// 	handleClose();
+		// } catch (error) {
+		// 	console.log(error);
+		// } finally {
+		// 	setIsLoading(false);
+		// }
 	};
 
 	const getFormData = async () => {
@@ -83,6 +82,7 @@ const ToogleSupplier = (props: Props) => {
 		setIsGetting(true);
 		try {
 			const res = await handleAPI(api);
+	
 			res.data && setFormData(res.data);
 		} catch (error) {
 			console.log(error);
@@ -143,9 +143,9 @@ const ToogleSupplier = (props: Props) => {
 					wrapperCol={{ span: formData.wrapperCol }}
 					size='large'
 					form={form}>
+						
 					{formData.formItems.map((item) => (
 						<FormItem item={item} />
-						
 					))}
 				</Form>
 			)}

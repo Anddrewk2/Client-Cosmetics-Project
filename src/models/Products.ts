@@ -31,7 +31,7 @@ export interface SubProductModel {
 	price: number;
 	qty: number;
 	productId: string;
-	images: any[];
+	images: string[];
 	_id: string;
 	createdAt: string;
 	updatedAt: string;

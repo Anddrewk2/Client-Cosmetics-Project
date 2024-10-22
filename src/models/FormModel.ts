@@ -14,7 +14,7 @@ export interface FormItemModel {
 	label: string;
 	placeholder: string;
 	type: 'default' | 'select' | 'number' | 'email' | 'tel' | 'file' | 'checkbox';
-	lockup_item: SelectModel[];
+	lookup_items: SelectModel[];
 	required: boolean;
 	message: string;
 	default_value: string;

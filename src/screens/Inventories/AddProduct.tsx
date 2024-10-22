@@ -26,7 +26,8 @@ import { Add } from 'iconsax-react';
 import { ModalCategory } from '../../modals';
 import { getTreeValues } from '../../utils/getTreeValues';
 import { useSearchParams } from 'react-router-dom';
-import { GetProductDetails } from '../Index';
+import ProductDetail from './ProductDetail';
+
 const { Text, Title, Paragraph } = Typography;
 
 const AddProduct = () => {
@@ -68,33 +69,6 @@ const AddProduct = () => {
 		}
 	};
 
-	const getProductDetail = async (id: string) => {
-		const api = `/products/detail?id=${id}`;
-		try {
-			const res = await handleAPI(api);
-			const item = res.data;
-
-			if (item) {
-				form.setFieldsValue(item);
-				setcontent(item.content);
-				if (item.images && item.images.length > 0) {
-					const items = [...fileList];
-					item.images.forEach((url: string) =>
-						items.push({
-							uid: `${Math.floor(Math.random() * 1000000)}`,
-							name: url,
-							status: 'done',
-							url,
-						})
-					);
-
-					setFileList(items);
-				}
-			}
-		} catch (error) {
-			console.log(error);
-		}
-	};
 
 	const handleAddNewProduct = async (values: any) => {
 		const content = editorRef.current.getContent();
@@ -119,8 +93,9 @@ const AddProduct = () => {
 			});
 
 			data.images = urls;
+            console.log(urls)
 		}
-		console.log(data)
+
 		try {
 			await handleAPI(
 				`/products/${id ? `update?id=${id}` : 'add-new'}`,
@@ -132,6 +107,35 @@ const AddProduct = () => {
 			console.log(error);
 		} finally {
 			setIsCreating(false);
+		}
+	};
+
+    const getProductDetail = async (id: string) => {
+		const api = `/products/detail?id=${id}`;
+		try {
+			const res = await handleAPI(api);
+			const item = res.data;
+
+			if (item) {
+				form.setFieldsValue(item);
+				setcontent(item.content);
+				if (item.images && item.images.length > 0) {
+					const items = [...fileList];
+					item.images.forEach((url: string) =>
+						items.push({
+							uid: `${Math.floor(Math.random() * 1000000)}`,
+							name: url,
+							status: 'done',
+							url,
+						})
+					);
+
+					setFileList(items);
+                    console.log(item.images)
+				}
+			}
+		} catch (error) {
+			console.log(error);
 		}
 	};
 

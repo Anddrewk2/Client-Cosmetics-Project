@@ -1,7 +1,7 @@
 /** @format */
 
 import { Checkbox, Form, Input, Select } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 import { FormItemModel } from '../models/FormModel';
 
 interface Props {
@@ -11,15 +11,18 @@ interface Props {
 const FormItem = (props: Props) => {
 	const { item } = props;
 
+	const [isChecked, setIsChecked] = useState(false);
+
 	const renderInput = (item: FormItemModel) => {
 		let content = <></>;
 
 		switch (item.type) {
 			case 'checkbox':
-				content = <Checkbox />;
+				content = <Checkbox onChange={() => setIsChecked(!isChecked)}>{item.label}</Checkbox>;
 				break;
 			case 'select':
-				content = <Select options={item.lockup_item ?? []} />;
+		
+				content = <Select  options={item.lookup_items} />;
 				break;
 			default:
 				content = (

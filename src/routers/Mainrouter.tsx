@@ -4,10 +4,11 @@ import { Affix, Layout } from 'antd';
 import Homescreen from '../screens/Homescreen';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {
-	ShowallProduct,ManageStore,Orders,GetProductDetails,ReportScreen,Suppliers,AddProduct} from '../screens/Index';
+	Inventories,ManageStore,Orders,ProductDetail,ReportScreen,Suppliers,} from '../screens/Index';
 import { HeaderComponent, SiderComponent } from '../components';
 import Categories from '../screens/categories/Categories';
 import CategoryDetail from '../screens/categories/CategoryDetail';
+import AddProduct from '../screens/Inventories/AddProduct';
 const { Content, Footer, Header, Sider } = Layout;
 
 const MainRouter = () => {
@@ -28,11 +29,11 @@ const MainRouter = () => {
 						<Routes>
 							<Route path='/' element={<Homescreen />} />
 							<Route>
-								<Route path='/inventory' element={<ShowallProduct />} />
+								<Route path='/inventory' element={<Inventories />} />
 								<Route path='/inventory/add-product' element={<AddProduct />} />
 								<Route
 									path='/inventory/detail/:slug'
-									element={<GetProductDetails />}
+									element={<ProductDetail />}
 								/>
 							</Route>
 							<Route path='/report' element={<ReportScreen />} />

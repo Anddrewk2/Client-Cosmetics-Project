@@ -66,8 +66,8 @@ const Inventories = () => {
 			const res = await handleAPI(api);
 			const data = res.data;
 			setProducts(data.items.map((item: any) => ({ ...item, key: item._id })));
-
 			setTotal(data.totalItems);
+            console.log(res.data)
 		} catch (error) {
 			console.log(error);
 		} finally {
@@ -150,7 +150,7 @@ const Inventories = () => {
 			dataIndex: 'categories',
 			title: 'categories',
 			render: (ids: string[]) => (
-				<Space key={'categories-nd'}>
+				<Space key={'categories-nd'} wrap>
 					{ids.map((id) => (
 						<CategoryComponent id={id} />
 					))}
@@ -287,12 +287,11 @@ const Inventories = () => {
 			const res = await handleAPI('/products');
 
 			const items = res.data.items;
-
 			if (items.length > 0) {
 				const keys = items.map((item: any) => item._id);
-
 				setSelectedRowKeys(keys);
 			}
+            console.log(res.data)
 		} catch (error) {
 			console.log(error);
 		}
@@ -327,6 +326,7 @@ const Inventories = () => {
 			console.log(error);
 		}
 	};
+
 
 
 	return (
@@ -411,7 +411,8 @@ const Inventories = () => {
 				pagination={{
 					showSizeChanger: true,
 					onShowSizeChange: (current, size) => {
-		
+						// console.log(current, size);
+						// console.log('size');
 					},
 					total,
 					onChange(page, pageSize) {

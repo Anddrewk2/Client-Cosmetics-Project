@@ -78,7 +78,6 @@ const AddSubProductModal = (props: Props) => {
 				const res = await handleAPI(api, data, subProduct ? 'put' : 'post');
 				onAddNew(res.data);
 				handleCancel();
-				console.log(res.data)
 			} catch (error) {
 				console.log(error);
 			} finally {
@@ -152,11 +151,11 @@ const AddSubProductModal = (props: Props) => {
 				<Form.Item name='color' label='Color'>
 					<ColorPicker
 						format='hex'
-						// onChange={(val) => {
-						// 	const color = typeof val === 'string' ? val : val.toHexString();
+						 onChange={(val) => {
+							const color = typeof val === 'string' ? val : val.toHexString();
 
-						// 	console.log(color);
-						// }}
+							console.log(color);
+						 }}
 					/>
 				</Form.Item>
 				<Form.Item
@@ -179,6 +178,11 @@ const AddSubProductModal = (props: Props) => {
 					</div>
 					<div className='col'>
 						<Form.Item name={'price'} label='Price'>
+							<InputNumber style={{ width: '100%' }} />
+						</Form.Item>
+					</div>
+					<div className='col'>
+						<Form.Item name={'discount'} label='Discount'>
 							<InputNumber style={{ width: '100%' }} />
 						</Form.Item>
 					</div>
