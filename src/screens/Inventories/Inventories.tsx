@@ -3,7 +3,6 @@
 import {
 	Avatar,
 	Button,
-	Card,
 	Divider,
 	Dropdown,
 	Input,
@@ -21,14 +20,13 @@ import React, { useEffect, useState } from 'react';
 import { MdLibraryAdd } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import handleAPI from '../../apis/handleAPI';
+import { FilterProduct } from '../../components';
 import CategoryComponent from '../../components/CategoryComponent';
+import { FilterProductValue } from '../../components/FilterProduct';
 import { colors } from '../../constants/Colors';
 import { AddSubProductModal } from '../../modals';
 import { ProductModel, SubProductModel } from '../../models/Products';
 import { replaceName } from '../../utils/replaceName';
-import { FilterProduct } from '../../components';
-import { FilterProductValue } from '../../components/FilterProduct';
-import axios from 'axios';
 
 const { confirm } = Modal;
 
@@ -56,9 +54,13 @@ const Inventories = () => {
 		}
 	}, [searchKey]);
 
+	// useEffect(() => {
+	// 	getProducts(`/products?page=${page}&pageSize=${pageSize}`);
+	// }, [page, pageSize]);
+
 	useEffect(() => {
-		getProducts(`/products?page=${page}&pageSize=${pageSize}`);
-	}, [page, pageSize]);
+		getProducts(`/products`);
+	}, []);
 
 	const getProducts = async (api: string) => {
 		setIsLoading(true);
@@ -67,7 +69,6 @@ const Inventories = () => {
 			const data = res.data;
 			setProducts(data.items.map((item: any) => ({ ...item, key: item._id })));
 			setTotal(data.totalItems);
-            console.log(res.data)
 		} catch (error) {
 			console.log(error);
 		} finally {
@@ -287,11 +288,12 @@ const Inventories = () => {
 			const res = await handleAPI('/products');
 
 			const items = res.data.items;
+
 			if (items.length > 0) {
 				const keys = items.map((item: any) => item._id);
+
 				setSelectedRowKeys(keys);
 			}
-            console.log(res.data)
 		} catch (error) {
 			console.log(error);
 		}
@@ -326,8 +328,6 @@ const Inventories = () => {
 			console.log(error);
 		}
 	};
-
-
 
 	return (
 		<div>
@@ -403,7 +403,6 @@ const Inventories = () => {
 							<Button icon={<Sort size={20} />}>Filter</Button>
 						</Dropdown>
 						<Divider type='vertical' />
-						<Button type='primary'>Add Product</Button>
 					</Space>
 				</div>
 			</div>

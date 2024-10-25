@@ -11,7 +11,7 @@ import { SupplierModel } from '../models/SupplierModel';
 import { FormModel } from '../models/FormModel';
 import TableComponet from '../components/TableComponent';
 import { useNavigate, useRoutes, useSearchParams } from 'react-router-dom';
-
+import { VND } from '../utils/handleCurrency';
 const { Title, Text } = Typography;
 const { confirm } = Modal;
 
@@ -59,10 +59,11 @@ const Suppliers = () => {
 			res.data && setSuppliers(res.data.items);
 			console.log(res.data);
 			const items: SupplierModel[] = [];
-
+			
 			res.data.items.forEach((item: any, index: number) =>
 				items.push({
 					index: (page - 1) * pageSize + (index + 1),
+					price: VND.format(item.price),
 					...item,
 				})
 			);

@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useEffect, useState } from 'react';
-import { CategoyModel } from '../models/Products';
+import { CategoyModel } from '../models/CategoriesModel';
 import handleAPI from '../apis/handleAPI';
 import { Tag } from 'antd';
 import { Link } from 'react-router-dom';
@@ -21,7 +21,7 @@ const CategoryComponent = (props: Props) => {
 	}, [id]);
 
 	const getCategoryDetail = async () => {
-		const api = `/products/categories/detail?id=${id}`;
+		const api = `/categories/categories/detail?id=${id}`;
 
 		try {
 			const res = await handleAPI(api);

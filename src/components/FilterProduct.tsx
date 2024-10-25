@@ -69,7 +69,7 @@ const FilterProduct = (props: Props) => {
 	};
 
 	const getCategories = async () => {
-		const res = await handleAPI(`/products/get-categories`);
+		const res = await handleAPI(`/categories/get-categories`);
 
 		const data =
 			res.data && res.data.length > 0

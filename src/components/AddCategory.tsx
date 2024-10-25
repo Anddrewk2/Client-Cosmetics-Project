@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { replaceName } from '../utils/replaceName';
 import handleAPI from '../apis/handleAPI';
 import { TreeModel } from '../models/FormModel';
-import { CategoyModel } from '../models/Products';
+import { CategoyModel } from '../models/CategoriesModel';
 
 interface Props {
 	onAddNew: (val: any) => void;
@@ -31,8 +31,8 @@ const AddCategory = (props: Props) => {
 
 	const handleCategory = async (values: any) => {
 		const api = seleted
-			? `/products/update-category?id=${seleted._id}`
-			: `/products/add-category`;
+			? `/categories/update-category?id=${seleted._id}`
+			: `/categories/add-category`;
 		const data: any = {};
 
 		for (const i in values) {

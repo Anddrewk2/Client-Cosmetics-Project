@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 import handleAPI from '../../apis/handleAPI';
 import { colors } from '../../constants/Colors';
 import { TreeModel } from '../../models/FormModel';
-import { CategoyModel } from '../../models/Products';
+import { CategoyModel } from '../../models/CategoriesModel';
 import { getTreeValues } from '../../utils/getTreeValues';
 import { AddCategory } from '../../components';
 
@@ -32,11 +32,11 @@ const Categories = () => {
 	const [categorySelected, setCategorySelected] = useState<CategoyModel>();
 
 	useEffect(() => {
-		getCategories(`/products/get-categories`, true);
+		getCategories(`/categories/get-categories`, true);
 	}, []);
 
 	useEffect(() => {
-		const api = `/products/get-categories?page=${page}&pageSize=${pageSize}`;
+		const api = `/categories/get-categories?page=${page}&pageSize=${pageSize}`;
 		getCategories(api);
 	}, [page, pageSize]);
 
@@ -105,7 +105,7 @@ const Categories = () => {
 	];
 
 	const handleRemove = async (id: string) => {
-		const api = `/products/delete-category?id=${id}`;
+		const api = `/categories/delete-category?id=${id}`;
 
 		try {
 			await handleAPI(api, undefined, 'delete');
@@ -144,10 +144,10 @@ const Categories = () => {
 										setCategories(items);
 										setCategorySelected(undefined);
 
-										await getCategories(`/products/get-categories`, true);
+										await getCategories(`/categories/get-categories`, true);
 									} else {
 										getCategories(
-											`/products/get-categories?page=${page}&pageSize=${pageSize}`
+											`/categories/get-categories?page=${page}&pageSize=${pageSize}`
 										);
 									}
 								}}

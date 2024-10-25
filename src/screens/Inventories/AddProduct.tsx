@@ -84,31 +84,35 @@ const AddProduct = () => {
 		if (fileList.length > 0) {
 			const urls: string[] = [];
 			fileList.forEach(async (file) => {
-				if (file.originFileObj) {
-					const url = await uploadFile(file.originFileObj);
-					url && urls.push(url);
-				} else {
-					urls.push(file.url);
+				const url = await uploadFile(file.originFileObj);
+				url && urls.push(url);
+
+				if (urls.length === fileList.length) {
+					data.images = urls;
+
+					await createProduct(data);
 				}
 			});
+		} else {
+			await createProduct(data);
 
-			data.images = urls;
-            console.log(urls)
-		}
-
-		try {
-			await handleAPI(
-				`/products/${id ? `update?id=${id}` : 'add-new'}`,
-				data,
-				id ? 'put' : 'post'
-			);
-			window.history.back();
-		} catch (error) {
-			console.log(error);
-		} finally {
-			setIsCreating(false);
 		}
 	};
+
+	const createProduct = async(data: any) => {
+		try {
+					await handleAPI(
+						`/products/${id ? `update?id=${id}` : 'add-new'}`,
+						data,
+						id ? 'put' : 'post'
+					);
+					window.history.back();
+				} catch (error) {
+					console.log(error);
+				} finally {
+					setIsCreating(false);
+				}
+			};
 
     const getProductDetail = async (id: string) => {
 		const api = `/products/detail?id=${id}`;
@@ -153,7 +157,7 @@ const AddProduct = () => {
 	};
 
 	const getCategories = async () => {
-		const res = await handleAPI(`/products/get-categories`);
+		const res = await handleAPI(`/categories/get-categories`);
 		const datas = res.data;
 
 		const data = datas.length > 0 ? getTreeValues(datas, true) : [];

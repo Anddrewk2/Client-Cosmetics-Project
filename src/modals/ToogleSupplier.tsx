@@ -10,6 +10,8 @@ import { FormModel } from '../models/FormModel';
 import { SupplierModel } from '../models/SupplierModel';
 import { replaceName } from '../utils/replaceName';
 import { uploadFile } from '../utils/uploadFile';
+import { CategoyModel } from '../models/CategoriesModel';
+import Item from 'antd/es/list/Item';
 
 const { Paragraph } = Typography;
 
@@ -28,7 +30,6 @@ const ToogleSupplier = (props: Props) => {
 	const [isTaking, setIsTaking] = useState<boolean>();
 	const [formData, setFormData] = useState<FormModel>();
 	const [file, setFile] = useState<any>();
-
 	const [form] = Form.useForm();
 	const inpRef = useRef<any>();
 
@@ -39,42 +40,38 @@ const ToogleSupplier = (props: Props) => {
 	useEffect(() => {
 		if (supplier) {
 			form.setFieldsValue(supplier);
-			setIsTaking(supplier.isTaking === 1);
 		}
 	}, [supplier]);
 
 	const addNewSupplier = async (values: any) => {
-		console.log(values)
-		// setIsLoading(true);
+		setIsLoading(true);
+		const data: any = {};
+		const api = `/supplier/${
+			supplier ? `update?id=${supplier._id}` : 'add-new'
+		}`;
+		for (const i in values) {
+			data[i] = values[i] ?? '';
+		}
 
-		// const data: any = {};
-		// const api = `/supplier/${
-		// 	supplier ? `update?id=${supplier._id}` : 'add-new'
-		// }`;
+		data.price = values.price ? parseInt(values.price) : 0;
+		data.isTaking = isTaking ? 1 : 0;
 
-		// for (const i in values) {
-		// 	data[i] = values[i] ?? '';
-		// }
+		if (file) {
+			data.photoUrl = await uploadFile(file);
+		}
 
-		// data.price = values.price ? parseInt(values.price) : 0;
-		// data.isTaking = isTaking ? 1 : 0;
+		data.slug = replaceName(values.name);
 
-		// if (file) {
-		// 	data.photoUrl = await uploadFile(file);
-		// }
-
-		// data.slug = replaceName(values.name);
-
-		// try {
-		// 	const res: any = await handleAPI(api, data, supplier ? 'put' : 'post');
-		// 	message.success(res.message);
-		// 	!supplier && onAddNew(res.data);
-		// 	handleClose();
-		// } catch (error) {
-		// 	console.log(error);
-		// } finally {
-		// 	setIsLoading(false);
-		// }
+		try {
+			const res: any = await handleAPI(api, data, supplier ? 'put' : 'post');
+			message.success(res.message);
+			!supplier && onAddNew(res.data);
+			handleClose();
+		} catch (error) {
+			console.log(error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	const getFormData = async () => {
@@ -97,6 +94,7 @@ const ToogleSupplier = (props: Props) => {
 	};
 
 	return (
+		
 		<Modal
 			loading={isGetting}
 			closable={!isLoading}
@@ -117,6 +115,7 @@ const ToogleSupplier = (props: Props) => {
 					<Avatar size={100} src={supplier.photoUrl} />
 				) : (
 					<Avatar
+					
 						size={100}
 						style={{
 							backgroundColor: 'white',
@@ -132,6 +131,11 @@ const ToogleSupplier = (props: Props) => {
 					<Button onClick={() => inpRef.current.click()} type='link'>
 						Browse image
 					</Button>
+				</div>
+				<div>
+					<h1>
+					Supplier product thì có thể nhập nhiều product và chọn product khi mapping qua trang productt
+					</h1>
 				</div>
 			</label>
 			{formData && (
