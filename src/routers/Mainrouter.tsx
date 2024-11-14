@@ -9,6 +9,7 @@ import { HeaderComponent, SiderComponent } from '../components';
 import Categories from '../screens/categories/Categories';
 import CategoryDetail from '../screens/categories/CategoryDetail';
 import AddProduct from '../screens/Inventories/AddProduct';
+import PromotionScreen from '../screens/promotionScreen';
 const { Content, Footer, Header, Sider } = Layout;
 
 const MainRouter = () => {
@@ -48,6 +49,7 @@ const MainRouter = () => {
 							</Route>
 
 							<Route path='/manage-store' element={<ManageStore />} />
+							<Route path='/promotions' element={<PromotionScreen />} />
 						</Routes>
 					</Content>
 					<Footer className='bg-white' />

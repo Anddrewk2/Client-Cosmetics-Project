@@ -1,7 +1,7 @@
 /** @format */
 
 import { Layout, Menu, MenuProps, Typography } from 'antd';
-import { Box, Chart, DocumentCode, Home2, ProfileCircle } from 'iconsax-react';
+import { Box, Chart, DocumentCode, Home2, PercentageSquare, ProfileCircle } from 'iconsax-react';
 import { Link } from 'react-router-dom';
 import { FiHome } from 'react-icons/fi';
 import { CiViewList } from 'react-icons/ci';
@@ -61,6 +61,11 @@ const SiderComponent = () => {
 			label: <Link to={'/manage-store'}>Manage Store</Link>,
 			icon: <CiViewList size={20} />,
 		},
+		{
+			key: 'Promotions',
+			label: <Link to={'/promotions'}>Promotions</Link>,
+			icon: <PercentageSquare size={20} />,
+		},
 	];
 	return (
 		<Sider width={280} theme='light' style={{ height: '100vh' }}>
@@ -69,9 +74,10 @@ const SiderComponent = () => {
 				<Text
 					style={{
 						fontWeight: 'bold',
-						fontSize: '1.5rem',
+						fontSize: '2rem',
 						color: colors.primary500,
 						margin: 0,
+						textAlign: 'center',	
 					}}>
 					{appInfo.title}
 				</Text>
