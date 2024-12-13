@@ -69,6 +69,7 @@ const Inventories = () => {
 			const data = res.data;
 			setProducts(data.items.map((item: any) => ({ ...item, key: item._id })));
 			setTotal(data.totalItems);
+			console.log(res.data)
 		} catch (error) {
 			console.log(error);
 		} finally {

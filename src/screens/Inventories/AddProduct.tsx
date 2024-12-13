@@ -192,6 +192,7 @@ const AddProduct = () => {
 					size='large'
 					form={form}
 					onFinish={handleAddNewProduct}
+
 					layout='vertical'>
 					<div className='row'>
 						<div className='col-8'>

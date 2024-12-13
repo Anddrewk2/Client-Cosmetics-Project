@@ -1,7 +1,9 @@
-/** @format */
+import React from 'react'
 
 const Orders = () => {
-	return <></>;
-};
+  return (
+    <div>Orders</div>
+  )
+}
 
-export default Orders;
+export default Orders
