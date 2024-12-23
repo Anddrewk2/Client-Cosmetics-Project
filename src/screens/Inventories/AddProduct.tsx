@@ -215,43 +215,7 @@ const AddProduct = () => {
 									allowClear
 								/>
 							</Form.Item>
-							<Editor
-								disabled={isLoading || isCreating}
-								apiKey='ikfkh2oosyq8z4b77hhj1ssxu7js46chtdrcq9j5lqum494c'
-								onInit={(evt, editor) => (editorRef.current = editor)}
-								initialValue={content !== '' ? content : ''}
-								init={{
-									height: 500,
-									menubar: true,
-									plugins: [
-										'advlist',
-										'autolink',
-										'lists',
-										'link',
-										'image',
-										'charmap',
-										'preview',
-										'anchor',
-										'searchreplace',
-										'visualblocks',
-										'code',
-										'fullscreen',
-										'insertdatetime',
-										'media',
-										'table',
-										'code',
-										'help',
-										'wordcount',
-									],
-									toolbar:
-										'undo redo | blocks | ' +
-										'bold italic forecolor | alignleft aligncenter ' +
-										'alignright alignjustify | bullist numlist outdent indent | ' +
-										'removeformat | help',
-									content_style:
-										'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
-								}}
-							/>
+						
 						</div>
 						<div className='col-4'>
 							<Card size='small' className='mt-4'>

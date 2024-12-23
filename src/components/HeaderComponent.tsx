@@ -32,7 +32,7 @@ const HeaderComponent = () => {
 <div className='p-2 row bg-white m-0 justify-content-end' style={{ display: 'flex' }}> 
   <div className='col'>
     <Input
-      placeholder='Muon gi phai noi '
+      placeholder='Search Everything'
       style={{
         borderRadius: 100,
         width: '50%',

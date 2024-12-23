@@ -12,9 +12,7 @@ const { Title, Text, Paragraph } = Typography;
 const SignUp = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
-
 	const [form] = Form.useForm();
-
     const navigate = useNavigate(); // Khai báo useNavigate
 	const handleLogin = async (values: { email: string; password: string }) => {
 		const api = `/auth/register`;
